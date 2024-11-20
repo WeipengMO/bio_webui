@@ -5,6 +5,7 @@ Bio WebUI is a Streamlit-based web application for performing bioinformatics ana
 ## Features
 
 - Over Representation Analysis (ORA)
+- Survival Analysis
 - To be continued...
 
 ## Installation
