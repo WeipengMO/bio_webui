@@ -11,7 +11,7 @@ Bio WebUI is a Streamlit-based web application for performing bioinformatics ana
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/bio_webui.git
+    git clone https://github.com/WeipengMO/bio_webui.git
     cd bio_webui
     ```
 
