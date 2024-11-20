@@ -1,0 +1,6 @@
+streamlit>=1.40.1
+anndata>=0.10.9
+decoupler>=1.8.0
+omnipath>=1.0.8
+scipy>=1.14.1
+matplotlib>=3.9.2
