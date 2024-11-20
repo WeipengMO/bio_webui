@@ -18,17 +18,13 @@ def main():
             st.caption(
                 "Over Representation Analysis (ORA)")
 
-        run_button = st.button('Run')
+    if app_choice == "ORA":
+        from app import ora
+        run = ora.main
+        title = "ORA Analysis"
 
-
-    if run_button:
-        if app_choice == "ORA":
-            from app import ora
-            run = ora.main
-            title = "ORA Analysis"
-
-        st.title(title)
-        run()
+    st.title(title)
+    run()
             
             
 if __name__ == "__main__":
