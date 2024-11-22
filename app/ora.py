@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import os
+from .utils import parse_gene_input
 
 plt.rcParams["font.family"] = "Arial"
 plt.rcParams['svg.fonttype'] = 'none'
@@ -13,8 +14,6 @@ plt.rcParams['svg.fonttype'] = 'none'
 
 @st.cache_data(ttl='1d')
 def perform_ora(genes, gene_sets, threshold):
-    genes = genes.split()
-    genes = [gene.strip() for gene in genes]
     enr_pvals = dc.get_ora_df(
         df=genes,
         net=gene_sets,
@@ -48,7 +47,12 @@ def get_user_inputs(unique_genesets):
     selected_collections = st.multiselect('Select Gene Sets', options, default=default_collections)
     if all_option in selected_collections:
         selected_collections = list(unique_genesets)
+
+    # Parse user input
     user_genes = st.text_area('Enter Genes (separated by spaces)', height=200)
+    user_genes = parse_gene_input(user_genes)
+    st.write('Number of unique genes:', len(user_genes))
+
     pvalue_threshold = st.slider('Set FDR p-value threshold', min_value=0.0, max_value=0.050, value=0.050, step=0.001)
     st.write("The current FDR p-value is ", pvalue_threshold)
     top_n = st.number_input('Number of top results to display', min_value=1, max_value=50, value=10)

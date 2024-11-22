@@ -8,19 +8,26 @@ def setup_ui():
 def main():
     with st.sidebar:
         st.header("Bio WebUI")
-        api_options = ('ORA', 'Survival')
+        api_options = ('ORA (genes)', 'GSEA (genes)', 'Survival', 'ORA (adata)')
         app_choice = st.selectbox(
             label="Choose an app to run", 
             index=None,
             options=api_options
         )
 
-        if app_choice == "ORA":
+        if app_choice == "ORA (genes)":
             st.caption(
-                "Over Representation Analysis (ORA)")
+                "Over Representation Analysis")
             from app import ora
             run = ora.main
             title = "ORA Analysis"
+        
+        elif app_choice == "GSEA (genes)":
+            st.caption(
+                "Gene Set Enrichment Analysis")
+            from app import gsea
+            run = gsea.main
+            title = "GSEA Analysis"
 
         elif app_choice == "Survival":
             st.caption(
@@ -28,6 +35,13 @@ def main():
             from app import survival
             run = survival.main
             title = "Survival Analysis"
+        
+        elif app_choice == "ORA (adata)":
+            st.caption(
+                "Over Representation Analysis (AnnData)")
+            from app import ora_adata
+            run = ora_adata.main
+            title = "ORA Analysis (AnnData)"
     
     if app_choice is not None:
         st.title(title)
